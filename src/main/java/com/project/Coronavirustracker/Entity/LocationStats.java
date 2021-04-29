@@ -4,6 +4,15 @@ public class LocationStats {
     private String state;
     private String country;
     private int totalCases;
+    private int deltaCases;
+
+    public int getDeltaCases() {
+        return deltaCases;
+    }
+
+    public void setDeltaCases(int deltaCases) {
+        this.deltaCases = deltaCases;
+    }
 
     public String getState() {
         return state;
