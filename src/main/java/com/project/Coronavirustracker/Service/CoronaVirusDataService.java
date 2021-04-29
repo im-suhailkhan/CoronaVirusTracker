@@ -22,6 +22,15 @@ public class CoronaVirusDataService {
 
     public static String dataURL="https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
     List<LocationStats> allStats=new ArrayList<>();
+
+    public List<LocationStats> getAllStats() {
+        return allStats;
+    }
+
+    public void setAllStats(List<LocationStats> allStats) {
+        this.allStats = allStats;
+    }
+
     @PostConstruct
     @Scheduled(cron = "* * 1 * * *")
     //this help to schedule so that it run at specified interval
@@ -39,7 +48,7 @@ public class CoronaVirusDataService {
         for (CSVRecord record : records) {
             LocationStats locationStats=new LocationStats();
             locationStats.setState(record.get("Province/State"));
-            locationStats.setState(record.get("Country/Region"));
+            locationStats.setCountry(record.get("Country/Region"));
             locationStats.setTotalCases(Integer.parseInt(record.get(record.size()-1)));
             System.out.println(locationStats);
             newStats.add(locationStats);
